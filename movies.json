@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Lord of the Rings: The Return of the king",
+    "director": "Peter Jackson",
+    "release": "Dec 2003"
+  },
+  {
+    "id": 2,
+    "title": "Oppenheimer",
+    "director": "Christopher Nolan",
+    "release": "July 2023"
+  },
+  {
+    "id": 3,
+    "title": "Schiendler's list",
+    "director": "Steven Spielberg",
+    "release": "Dec 1993"
+  },
+  {
+    "id": 4,
+    "title": "Taxi Driver",
+    "director": "Martin Scorsese",
+    "release": "Feb 1976"
+  },
+  {
+    "id": 5,
+    "title": "2001: A Space Odyssey",
+    "director": "Stanley Kubrick",
+    "release": "Oct 1968"
+  }
+]
