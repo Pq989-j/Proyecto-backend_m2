@@ -12,7 +12,7 @@ async function getMovies(req, res) {
 
 async function getMovie(req, res) {
     try {
-        const id = Number(req.params.id);
+        const id = (req.params.id);
         const movie = await MovieModel.getById(id);
 
         if (!movie) {
@@ -41,7 +41,7 @@ async function createMovie(req, res) {
 }
 
 async function updateMovie(req, res) {
-    const id = Number(req.params.id);
+    const id = (req.params.id);
     const { title, director, release } = req.body;
 
     if (!title || !director || !release) {
@@ -60,7 +60,7 @@ async function updateMovie(req, res) {
 }
 
 async function deleteMovie(req, res) {
-    const id = Number(req.params.id);
+    const id = (req.params.id);
 
     try {
         const deleted = await MovieModel.deleteMovie(id);

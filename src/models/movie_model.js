@@ -1,69 +1,35 @@
-const fs = require("node:fs").promises;
-const path = require("node:path");
+const mongoose = require("mongoose");
 
-const FILE_PATH = path.join(__dirname, "..", "..", "movies.json");
+const movieSchema = new mongoose.Schema({
+        title: { type: String, required: true, trim: true },
+        director: { type: String, required: true, trim: true },
+        release: { type: Number, required: true, trim: true},
+    },
+    { timestamps: true }
+);
 
-async function fileReader() {
-  try {
-    const content = await fs.readFile(FILE_PATH, "utf-8");
-    return JSON.parse(content);
-    } catch (error) {
-        if (error.code === "ENOENT") {
-            console.log("Archivo no encontrado, creando uno nuevo...");
-            await fs.writeFile(FILE_PATH, "[]", "utf-8");
-            return [];
-        }
-        throw error;
-    }
-}
-
-async function fileWriter(movies) {
-    movies.forEach((movie, index) => {
-        movie.id = index + 1;
-    });
-  await fs.writeFile(RUTA_DATOS, JSON.stringify(peliculas, null, 2), "utf-8");
-}
-
+const Movie = mongoose.model("Movie", movieSchema);
 async function getAll() {
-    return await fileReader();
+    return await Movie.find();
 }
 
 async function getById(id) {
-    const movies = await fileReader();
-    return movies.find(movie => movie.id === id) || null;
+    return Movie.findById(id);
 }
 
 async function create(newMovieData) {
-    const movies = await fileReader();
-    const nextId = movies.length + 1;
-
-    const newMovie = { id: nextId, ...newMovieData };
-    movies.push(newMovie);
-    await fileWriter(movies);
-    return newMovie;
+ const newMovie = new Movie(newMovieData); 
+ return await newMovie.save(); 
 }
 
 async function update(id, updatedMovieData) {
-    const movies = await fileReader();
-    const index = movies.findIndex(movie => movie.id === id);
-    if (index === -1) {
-        return null;
-    }
-    movies[index] = { id, ...updatedMovieData };
-    await fileWriter(movies);
-    return movies[index];
+ return await Movie.findByIdAndUpdate(id, updatedMovieData, 
+    { new: true, 
+    runValidators: true }); 
 }
 
 async function deleteMovie(id) {
-    const movies = await fileReader();
-    const index = movies.findIndex(movie => movie.id === id);
-
-    if (index === -1) {
-        return null;
-    }
-    const [deletedMovie] = movies.splice(index, 1);
-    await fileWriter(movies);
-    return deletedMovie;
+    return await Movie.findByIdAndDelete(id);
 }
 
 module.exports = {
