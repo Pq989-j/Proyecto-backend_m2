@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Pq989-j/Proyecto-backend_m2#readme",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
