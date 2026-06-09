@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
-
 import User from "../models/user_model.js";
+import jwt from "jsonwebtoken";
+
 
 export const register = async (req, res) => {
     try{
@@ -35,9 +36,10 @@ export const login = async (req,res) => {
         if(!coincide) {
             return res.status(401).json({ mensaje: "Credenciales incorrectas"});
         }
+
+        const token = jwt.sign({  id: user._id }, process.env.JWT_SECRET);
         return res.status(200).json({ mensaje: "Login correcto", 
-            id: user._id, 
-            email: user.email
+            token
         });
 
     } catch (error){
