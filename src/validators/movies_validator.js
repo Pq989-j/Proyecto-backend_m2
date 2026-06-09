@@ -1,7 +1,7 @@
-const { body, param } = require('express-validator'); // :white_check_mark: Corregido express y añadido param
+import { body, param } from 'express-validator'; // :white_check_mark: Corregido express y añadido param
 
 // :white_check_mark: Corregido: Ahora es un Array directo y con la 'R' mayúscula
-const createMovieRules = [
+export const createMovieRules = [
     body('title')
         .notEmpty()
         .withMessage('El título es obligatorio')
@@ -20,7 +20,7 @@ const createMovieRules = [
 ];
 
 // :white_check_mark: Corregido: Ahora es un Array directo
-const updateMovieRules = [
+export const updateMovieRules = [
     param("id")
         .isMongoId()
         .withMessage("El id no es válido"),
@@ -44,8 +44,3 @@ const updateMovieRules = [
         .isInt({ min: 1888 })
         .withMessage("El año de lanzamiento debe ser válido")
 ];
-
-module.exports = {
-    createMovieRules,
-    updateMovieRules
-};

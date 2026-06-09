@@ -1,7 +1,7 @@
 
-const MovieModel = require("../models/movie_model");
+import * as MovieModel from "../models/movie_model.js";
 
-async function getMovies(req, res) {
+export async function getMovies(req, res) {
     try {
         const movies = await MovieModel.getAll();
         return res.status(200).json(movies);
@@ -10,7 +10,7 @@ async function getMovies(req, res) {
     }
 }
 
-async function getMovie(req, res) {
+export async function getMovie(req, res) {
     try {
         const id = (req.params.id);
         const movie = await MovieModel.getById(id);
@@ -24,7 +24,7 @@ async function getMovie(req, res) {
     }
 }
 
-async function createMovie(req, res) {
+export async function createMovie(req, res) {
     // Mapeamos los campos del body en inglés: title, director, release
     const { title, director, release } = req.body;
 
@@ -40,7 +40,7 @@ async function createMovie(req, res) {
     }
 }
 
-async function updateMovie(req, res) {
+export async function updateMovie(req, res) {
     const id = (req.params.id);
     const { title, director, release } = req.body;
 
@@ -59,7 +59,7 @@ async function updateMovie(req, res) {
     }
 }
 
-async function deleteMovie(req, res) {
+export async function deleteMovie(req, res) {
     const id = (req.params.id);
 
     try {
@@ -72,12 +72,4 @@ async function deleteMovie(req, res) {
         return res.status(500).json({ error: "Error interno al borrar" });
     }
 }
-
-module.exports = {
-    getMovies,
-    getMovie,
-    createMovie,
-    updateMovie,
-    deleteMovie
-};
 

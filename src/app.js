@@ -1,8 +1,8 @@
-const express = require("express");
-const movieRouter = require("./routes/movie_routes");
-const cors = require("cors");
+import express from "express";
+import movieRouter from "./routes/movie_routes.js";
+import cors from "cors";
 const app = express();
-const authRoutes = require("./routes/auth_routes");
+import authRoutes from "./routes/auth_routes.js";
 
 app.use(cors());
 app.use(express.json());
@@ -18,4 +18,4 @@ app.get("/api/health", (req, res) => {
 app.use("/api/movies", movieRouter);
 app.use("/api/auth", authRoutes);
 
-module.exports = app;
+export default app;

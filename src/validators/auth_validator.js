@@ -1,6 +1,6 @@
-const {body} = require("express-validator");
+import {body} from "express-validator";
 
-const registerRules = [
+export const registerRules = [
     body('email')
         .isEmail()
         .withMessage("El email no es válido")
@@ -10,7 +10,7 @@ const registerRules = [
         .withMessage("La constraseña debe tener minimo seis caracteres"),
 ];
 
-const loginRules = [
+export const loginRules = [
     body("email")
         .isEmail()
         .withMessage("Email no válido")
@@ -20,4 +20,3 @@ const loginRules = [
         .withMessage("La contraseña es obligatoria"),
 ];
 
-module.exports = {registerRules, loginRules};

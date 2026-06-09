@@ -1,8 +1,8 @@
-const bcrypt = require("bcryptjs");
+import bcrypt from "bcryptjs";
 
-const User = require("../models/user_model");
+import User from "../models/user_model.js";
 
-const register = async (req, res) => {
+export const register = async (req, res) => {
     try{
         const { email, password } = req.body;
         
@@ -22,7 +22,7 @@ const register = async (req, res) => {
     }
 };
 
-const login = async (req,res) => {
+export const login = async (req,res) => {
     try{
         const { email, password } = req.body;
 
@@ -43,8 +43,4 @@ const login = async (req,res) => {
     } catch (error){
         return res.status(500).json({ error: "Error interno del servidor al iniciar sesión" });
     }
-};
-module.exports = {
-    register,
-    login 
 };

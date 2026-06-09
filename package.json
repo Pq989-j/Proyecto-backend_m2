@@ -11,9 +11,9 @@
     "url": "git+https://github.com/Pq989-j/Proyecto-backend_m2.git"
   },
   "keywords": [],
+  "type": "module",
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/Pq989-j/Proyecto-backend_m2/issues"
   },

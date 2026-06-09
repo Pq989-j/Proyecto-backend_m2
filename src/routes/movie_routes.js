@@ -1,10 +1,10 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const movieController = require("../controllers/movie_controller");
+import * as movieController from "../controllers/movie_controller.js";
 
-const { createMovieRules, updateMovieRules } = require ("../validators/movies_validator");
+import { createMovieRules, updateMovieRules } from "../validators/movies_validator.js";
 
-const validate = require ("../middlewares/validate");
+import validate from "../middlewares/validate.js";
 
 router.get("/", movieController.getMovies);
 router.get("/:id", movieController.getMovie);
@@ -12,4 +12,4 @@ router.post("/", createMovieRules, validate, movieController.createMovie);
 router.put("/:id", updateMovieRules, validate, movieController.updateMovie);
 router.delete("/:id", movieController.deleteMovie);  
 
-module.exports = router;
+export default router;
