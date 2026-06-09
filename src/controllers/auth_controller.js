@@ -46,3 +46,21 @@ export const login = async (req,res) => {
         return res.status(500).json({ error: "Error interno del servidor al iniciar sesión" });
     }
 };
+
+export const whoAmI = (req, res) => {
+    try {
+        const authHeader = req.headers.authorization;
+        if (!authHeader) {
+            return res.status(401).json({ mensaje: "No hay token" });
+        }
+
+        const token = authHeader.split(" ")[1];
+
+        const verifyToken = jwt.verify(token, process.env.JWT_SECRET);
+
+        res.status(200).json({ mensaje: "Token válido", id: verifyToken.id });
+
+    } catch (error) {
+        return res.status(401).json({ mensaje: "Token inválido o expirado" });
+    }
+};

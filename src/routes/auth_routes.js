@@ -7,6 +7,6 @@ import validate from "../middlewares/validate.js";
 
 router.post("/register", registerRules, validate, authController.register);
 router.post("/login", loginRules, validate, authController.login);
-
+router.get("/who-ami", authController.whoAmI)
 
 export default router;
