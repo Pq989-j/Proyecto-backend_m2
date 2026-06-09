@@ -6,7 +6,7 @@ const PORT = 3000;
 async function initServer() {
   await connectDB();
     app.listen(PORT, () => {
-        console.log(`Servidor escuchando en ${PORT}`);
+        console.log(`Servidor escuchando en https://localhost${PORT}`);
     });
 }
 
