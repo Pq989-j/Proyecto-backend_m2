@@ -47,20 +47,14 @@ export const login = async (req,res) => {
     }
 };
 
-export const whoAmI = (req, res) => {
+export const getProfile = async (req, res) => {
     try {
-        const authHeader = req.headers.authorization;
-        if (!authHeader) {
-            return res.status(401).json({ mensaje: "No hay token" });
+        const user = await User.findById(req.usuario.id).select("-password");
+        if (!user) {
+            return res.status(404).json({mensaje: "Usuario no encontrado"})
         }
-
-        const token = authHeader.split(" ")[1];
-
-        const verifyToken = jwt.verify(token, process.env.JWT_SECRET);
-
-        res.status(200).json({ mensaje: "Token válido", id: verifyToken.id });
-
-    } catch (error) {
-        return res.status(401).json({ mensaje: "Token inválido o expirado" });
+        return res.json(user)
+    }catch (error) {
+        return res.status(500).json({ mensaje: "Error al obtener perfil"})
     }
 };
