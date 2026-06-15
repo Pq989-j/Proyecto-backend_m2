@@ -8,7 +8,8 @@ const movieSchema = new mongoose.Schema({
     { timestamps: true }
 );
 
-const Movie = mongoose.model("Movie", movieSchema);
+export const Movie = mongoose.model("Movie", movieSchema);
+
 export async function getAll() {
     return await Movie.find();
 }

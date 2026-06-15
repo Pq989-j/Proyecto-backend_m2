@@ -9,9 +9,12 @@ const userSchema = new mongoose.Schema(
             trim: true 
         },
         password: { type: String, 
-            required: true, 
+            required: true
         },
-    },   
+        favMovies: [{ type: mongoose.Schema.Types.ObjectId ,
+            ref: "Movie"
+        }]
+    },    
 
     { timestamps: true }
 );

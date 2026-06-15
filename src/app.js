@@ -3,6 +3,7 @@ import movieRouter from "./routes/movie_routes.js";
 import cors from "cors";
 const app = express();
 import authRoutes from "./routes/auth_routes.js";
+import favoriteRoutes from "./routes/favorites_routes.js"
 
 app.use(cors());
 app.use(express.json());
@@ -17,5 +18,6 @@ app.get("/api/health", (req, res) => {
 });
 app.use("/api/movies", movieRouter);
 app.use("/api/auth", authRoutes);
+app.use("/api/favorites", favoriteRoutes)
 
 export default app;

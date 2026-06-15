@@ -49,7 +49,7 @@ export const login = async (req,res) => {
 
 export const getProfile = async (req, res) => {
     try {
-        const user = await User.findById(req.usuario.id).select("-password");
+        const user = await User.findById(req.usuario.id).select("-password").populate("favMovies");
         if (!user) {
             return res.status(404).json({mensaje: "Usuario no encontrado"})
         }
@@ -57,4 +57,26 @@ export const getProfile = async (req, res) => {
     }catch (error) {
         return res.status(500).json({ mensaje: "Error al obtener perfil"})
     }
+};
+
+export const addFavoriteMovie = async (req, res) => {
+  try {
+    const { movieId } = req.params;
+
+    const user = await User.findByIdAndUpdate(
+      req.usuario.id,
+      {
+        $addToSet: {
+          favMovies: movieId
+        }
+      },
+      { new: true }
+    );
+
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message
+    });
+  }
 };
