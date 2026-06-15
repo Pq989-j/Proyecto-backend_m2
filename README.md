@@ -22,6 +22,7 @@ Construida con **Node.js, Express y MongoDB**, siguiendo arquitectura **MVC** y 
 # 📁 Project Structure (MVC)
 
 Todo el código fuente está dentro de `src/`, mientras que el entry point está en la raíz.
+
 /
 ├── index.js
 ├── .env
