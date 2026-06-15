@@ -22,37 +22,37 @@ Construida con **Node.js, Express y MongoDB**, siguiendo arquitectura **MVC** y 
 # 📁 Project Structure (MVC)
 
 Todo el código fuente está dentro de `src/`, mientras que el entry point está en la raíz.
+/
 ├── index.js
 ├── .env
 ├── package.json
 │
 └── src/
-├── controllers/
-│ ├── auth_controller.js
-│ ├── movie_controller.js
-│
-├── models/
-│ ├── user_model.js
-│ ├── movie_model.js
-│
-├── routes/
-│ ├── auth_routes.js
-│ ├── movie_routes.js
-│ ├── favorites_routes.js
-│
-├── middlewares/
-│ ├── verifyToken.js
-│ ├── validate.js
-│
-├── validators/
-│ ├── auth_validator.js
-│ ├── movies_validator.js
-│
-├── config/
-│ ├── db.js
-│
-└── app.js
-
+    ├── controllers/
+    │   ├── auth_controller.js
+    │   └── movie_controller.js
+    │
+    ├── models/
+    │   ├── user_model.js
+    │   └── movie_model.js
+    │
+    ├── routes/
+    │   ├── auth_routes.js
+    │   ├── movie_routes.js
+    │   └── favorites_routes.js
+    │
+    ├── middlewares/
+    │   ├── verifyToken.js
+    │   └── validate.js
+    │
+    ├── validators/
+    │   ├── auth_validator.js
+    │   └── movies_validator.js
+    │
+    ├── config/
+    │   └── db.js
+    │
+    └── app.js
 ---
 
 # ⚙️ Environment Variables
