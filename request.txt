@@ -1,0 +1,8 @@
+login: {
+  "email": "test@test.com",
+  "password": "123456"
+}
+response del server: {
+  "mensaje": "Login correcto",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjgyYzJhZGMzMDA0ZGJhNzQyMzI5ZCIsImlhdCI6MTc4MTUyMzQzNH0.5bTkNawNA2XNw9MCNquGB6PJYPzRjxcnc5V286y96OY"
+}

@@ -23,7 +23,7 @@ Construida con **Node.js, Express y MongoDB**, siguiendo arquitectura **MVC** y 
 
 Todo el código fuente está dentro de `src/`, mientras que el entry point está en la raíz.
 
-/
+```
 ├── index.js
 ├── .env
 ├── package.json
@@ -54,18 +54,24 @@ Todo el código fuente está dentro de `src/`, mientras que el entry point está
     │   └── db.js
     │
     └── app.js
+```
 ---
 
 # ⚙️ Environment Variables
 
 ``env
-PORT=3000
-MONGODB_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/dbname
-JWT_SECRET=your_secret_key
+
+PORT=3000;
+
+MONGODB_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/dbname;
+
+JWT_SECRET=your_secret_key;
 
 # Server Entry Point 🚀
 import "dotenv/config";
+
 import app from "./src/app.js";
+
 import connectDB from "./src/config/db.js";
 
 const PORT = 3000;
@@ -83,15 +89,19 @@ initServer();
 ---
 
 # Server Flow
-index.js
-   ↓
-load env variables
-   ↓
-connectDB()
-   ↓
-Express app.listen()
-   ↓
-API ready 🚀
+index.js;
+   ↓;
+
+load env variables;
+   ↓;
+
+connectDB();
+   ↓;
+
+Express app.listen();
+   ↓;
+
+API ready 🚀;
 ---
 
 # 🔗 Base URL
@@ -100,24 +110,29 @@ http://localhost:3000/api
 
 # 🔐 Authentication System
 
-Sistema basado en JWT (stateless authentication).
+Sistema basado en JWT (stateless authentication);
 
 Register → Login → JWT → verifyToken → Protected Routes
 ---
 # 🟢 Register
-POST /api/auth/register
+POST /api/auth/register;
+```
 {
   "email": "user@email.com",
   "password": "123456"
 }
+```
+
 ---
 
 # 🟢 Login
 POST /api/auth/login
+```
 {
   "mensaje": "Login correcto",
   "token": "jwt_token"
 }
+```
 ---
 
 # 🔵 Profile
@@ -145,12 +160,13 @@ GET /api/movies/:id
 POST /api/movies
 
 🔐 Requires JWT
-
+```
 {
   "title": "Interstellar",
   "director": "Nolan",
   "release": 2014
 }
+```
 ## 🟠 Update movie
 PUT /api/movies/:id
 
@@ -191,18 +207,22 @@ Sensitive data hidden
 ---
 # 🧠 Database Models
 ## User
+```
 {
   email: String,
   password: String,
   favMovies: [ObjectId(Movie)]
 }
+```
 
 ## Movie
+```
 {
   title: String,
   director: String,
   release: Number
 }
+```
 ---
 
 # 🔁 System Flow
@@ -214,11 +234,19 @@ User → Register → Login → JWT
 
 # 🚀 Features Summary
 Full REST API
+
 JWT Authentication
+
 MVC Architecture
+
 Movies CRUD
+
 Favorites system
+
 MongoDB relationships
+
 Input validation
+
 Secure password handling
+
 Clean structure

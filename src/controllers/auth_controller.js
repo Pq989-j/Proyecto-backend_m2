@@ -71,7 +71,7 @@ export const addFavoriteMovie = async (req, res) => {
         }
       },
       { new: true }
-    );
+    ).select("-password").populate("favMovies");
 
     res.status(200).json(user);
   } catch (error) {
