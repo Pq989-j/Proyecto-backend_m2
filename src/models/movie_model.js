@@ -4,6 +4,8 @@ const movieSchema = new mongoose.Schema({
         title: { type: String, required: true, trim: true },
         director: { type: String, required: true, trim: true },
         release: { type: Number, required: true, trim: true},
+        poster: {type: String, required: true},
+        genre: {type: Array, required: true}
     },
     { timestamps: true }
 );

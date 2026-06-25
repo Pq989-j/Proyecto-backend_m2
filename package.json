@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "vitest"
+  },
+  "engine": {
+    "node": ">=18.0.0"
   },
   "repository": {
     "type": "git",

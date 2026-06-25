@@ -26,14 +26,14 @@ export async function getMovie(req, res) {
 
 export async function createMovie(req, res) {
     // Mapeamos los campos del body en inglés: title, director, release
-    const { title, director, release } = req.body;
+    const { title, director, release, poster, genre } = req.body;
 
-    if (!title || !director || !release) {
+    if (!title || !director || !release || !poster || !genre) {
         return res.status(400).json({ error: "Faltan campos obligatorios" });
     }
 
     try {
-        const newDoc = await MovieModel.create({ title, director, release });
+        const newDoc = await MovieModel.create({ title, director, release, poster, genre });
         return res.status(201).json(newDoc);
     } catch (error) {
         return res.status(500).json({ error: "Error interno al guardar la película" });
@@ -42,14 +42,14 @@ export async function createMovie(req, res) {
 
 export async function updateMovie(req, res) {
     const id = (req.params.id);
-    const { title, director, release } = req.body;
+    const { title, director, release, poster, genre } = req.body;
 
-    if (!title || !director || !release) {
+    if (!title || !director || !release || !poster || !genre) {
         return res.status(400).json({ error: "Faltan campos obligatorios para PUT" });
     }
 
     try {
-        const updated = await MovieModel.update(id, { title, director, release });
+        const updated = await MovieModel.update(id, { title, director, release, poster, genre });
         if (!updated) {
             return res.status(404).json({ error: "Película no encontrada para reemplazar" });
         }

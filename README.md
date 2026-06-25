@@ -194,7 +194,9 @@ deleteMovie → elimina película
 ---
 # 🧩 Middlewares
 ## Middleware	- Función
+
 verifyToken	valida JWT
+
 validate	express-validator handler
 ---
 # 🔐 Security

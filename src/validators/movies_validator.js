@@ -16,7 +16,19 @@ export const createMovieRules = [
         .notEmpty()
         .withMessage('El año de lanzamiento es obligatorio')
         .isInt({ min: 1888 })
-        .withMessage('El año de lanzamiento debe ser un número entero válido')
+        .withMessage('El año de lanzamiento debe ser un número entero válido'),
+
+    body('poster')
+        .notEmpty()
+        .withMessage('El poster es obligatorio'),
+
+    body('genre')
+        .notEmpty()
+        .withMessage('El o los generos son obligatorios')
+        .isArray({ min: 1 })
+        .withMessage('El campo debe ser un array con al menos un elemento.')
+
+
 ];
 
 // :white_check_mark: Corregido: Ahora es un Array directo
@@ -42,5 +54,18 @@ export const updateMovieRules = [
         .notEmpty()
         .withMessage("El año de lanzamiento es obligatorio")
         .isInt({ min: 1888 })
-        .withMessage("El año de lanzamiento debe ser válido")
+        .withMessage("El año de lanzamiento debe ser válido"),
+
+    body('poster')
+        .optional()
+        .notEmpty()
+        .withMessage('El poster es obligatorio'),
+
+    body('genre')
+        .optional()
+        .notEmpty()
+        .withMessage('El o los generos son obligatorios')
+        .isArray({ min: 1 })
+        .withMessage('El campo debe ser un array con al menos un elemento.')
+
 ];
