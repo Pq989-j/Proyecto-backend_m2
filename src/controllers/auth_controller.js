@@ -37,10 +37,12 @@ export const login = async (req,res) => {
             return res.status(401).json({ mensaje: "Credenciales incorrectas"});
         }
 
-        const token = jwt.sign({  id: user._id }, process.env.JWT_SECRET);
+        const token = jwt.sign({  id: user._id }, process.env.JWT_SECRET, {
+            expiresIn: "1h"});
         return res.status(200).json({ mensaje: "Login correcto", 
             token
         });
+        
 
     } catch (error){
         return res.status(500).json({ error: "Error interno del servidor al iniciar sesión" });
@@ -59,11 +61,25 @@ export const getProfile = async (req, res) => {
     }
 };
 
+export const deleteUser = async (req, res) => {
+    const id = (req.usuario.id);
+    try{
+        const deleted = await User.findByIdAndDelete(id);
+        if (!deleted) {
+            return res.status(404).json({ error: "Usuario no encontrada para borrar" });
+        }
+        return res.json({ mensaje: "Usuario eliminado correctamente", deleted });
+    } catch (error) {
+        return res.status(500).json({ error: "Error interno al borrar" });
+    }
+    
+};
+
 export const addFavoriteMovie = async (req, res) => {
   try {
     const { movieId } = req.params;
 
-    const user = await User.findByIdAndUpdate(
+    const favMovie = await User.findByIdAndUpdate(
       req.usuario.id,
       {
         $addToSet: {
@@ -72,11 +88,36 @@ export const addFavoriteMovie = async (req, res) => {
       },
       { new: true }
     ).select("-password").populate("favMovies");
+    if(!favMovie) {
+        return res.status(404).json({ error: "Pelicula no encontrada para añadir" });
 
-    res.status(200).json(user);
+    }
+    res.status(200).json(favMovie);
   } catch (error) {
     res.status(500).json({
-      message: error.message
+      error: "Error interno al añadir pelicula"
     });
   }
+};
+
+export const deleteFavoriteMovie = async (req, res) => {
+    try {
+        const { movieId } = req.params;
+        const deleted = await User.findByIdAndUpdate(
+            req.usuario.id,
+            {
+                $pull: {
+                    favMovies: movieId
+                }
+            },
+            { new: true }
+        ).select("-password");
+        if (!deleted) {
+            return res.status(404).json({ error: "Pelicula favorita no encontrada para borrar" });
+        }
+        return res.json({ mensaje: "Pelicula favorita eliminada correctamente", deleted });
+    } catch (error) {
+        return res.status(500).json({ error: "Error interno al borrar" });
+    }
+
 };

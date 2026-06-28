@@ -3,7 +3,8 @@ import * as MovieModel from "../models/movie_model.js";
 
 export async function getMovies(req, res) {
     try {
-        const movies = await MovieModel.getAll();
+        const { page, limit } = req.query;
+        const movies = await MovieModel.getAll({ page, limit });
         return res.status(200).json(movies);
     } catch (error) {
         return res.status(500).json({ error: "Error interno del servidor al listar" });

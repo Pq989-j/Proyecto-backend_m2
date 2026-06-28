@@ -16,7 +16,7 @@ export const loginRules = [
         .withMessage("Email no válido")
         .normalizeEmail(),
     body("password")
-        .notEmpty()
+        .isLength({min: 6})
         .withMessage("La contraseña es obligatoria"),
 ];
 
